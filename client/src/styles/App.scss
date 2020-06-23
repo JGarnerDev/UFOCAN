@@ -1,0 +1,19 @@
+// Importing global styling variables, functions, and mixins ( which are named collections of CSS declarations )
+@import "./global/functions";
+@import "./global/mixins";
+@import "./global/variables";
+// Importing component styles
+@import "./components/Home";
+@import "./components/Nav";
+@import "./components/About";
+@import "./components/Sightings";
+@import "./components/SightingReview";
+// Styling
+html,
+body,
+#App,
+#UFOCAN {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}

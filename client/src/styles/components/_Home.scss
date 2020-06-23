@@ -1,0 +1,29 @@
+// Importing global styling
+@import "./global/functions";
+@import "./global/mixins";
+@import "./global/variables";
+#Home {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    #one {
+        background: $color1;
+        flex-grow: 1;
+    }
+    #two {
+        background: $color2;
+        flex-grow: 1;
+    }
+    #three {
+        background: $color3;
+        flex-grow: 1;
+    }
+    #four {
+        background: $color4;
+        flex-grow: 1;
+    }
+    #five {
+        background: $color5;
+        flex-grow: 1;
+    }
+}
