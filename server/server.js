@@ -4,7 +4,12 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const mysql = require("mysql");
+const bodyParser = require("body-parser");
+// Middleware
+const app = express();
+app.use(bodyParser.json());
 
+// Connection protocol
 const pool = mysql.createPool({
 	host: process.env.CLEARDB_HOST,
 	user: process.env.CLEARDB_USER,
@@ -17,27 +22,16 @@ pool.getConnection((err) => {
 	if (err) {
 		console.log(err);
 	}
-	console.log("MySQL connected");
+	console.log("SQL database connected. Good Morning, Austin!");
 });
-
-const app = express();
 
 // Getting all people
-app.get("/people", (req, res) => {
-	let sql = "SELECT * FROM supkellan";
+app.post("/people", (req, res) => {
+	let start = req.body.start;
+	let end = req.body.end;
+	let sql = `SELECT * FROM supkellan WHERE ( id <= ${end} AND id > ${start})`;
 	let query = pool.query(sql, (err, results) => {
 		if (err) throw err;
-		console.log(results);
-		res.send(results);
-	});
-});
-
-// Getting specified people
-app.get("/people/:id", (req, res) => {
-	let sql = `SELECT * FROM supkellan WHERE id =${req.params.id}`;
-	let query = pool.query(sql, (err, results) => {
-		if (err) throw err;
-		console.log(results);
 		res.send(results);
 	});
 });

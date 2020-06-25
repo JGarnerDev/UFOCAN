@@ -7,11 +7,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 // Components //
 
-import Nav from "./components/Nav";
 import Home from "./components/Home";
-import About from "./components/About";
-import Sightings from "./components/Sightings";
-import SightingReview from "./components/SightingReview";
 
 // Styling //
 
