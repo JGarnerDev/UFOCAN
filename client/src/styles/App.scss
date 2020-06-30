@@ -2,6 +2,7 @@
 @import "./global/functions";
 @import "./global/mixins";
 @import "./global/variables";
+@import "~bootstrap/scss/bootstrap";
 // Importing component styles
 @import "./components/Home";
 @import "./components/Nav";
@@ -16,4 +17,9 @@ body,
     height: 100%;
     width: 100%;
     margin: 0;
+}
+
+main {
+    position: relative;
+    top: 60px;
 }

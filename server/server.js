@@ -26,10 +26,10 @@ pool.getConnection((err) => {
 });
 
 // Getting all people
-app.post("/people", (req, res) => {
+app.post("/sightings", (req, res) => {
 	let start = req.body.start;
 	let end = req.body.end;
-	let sql = `SELECT * FROM supkellan WHERE ( id <= ${end} AND id > ${start})`;
+	let sql = `SELECT * FROM ufos_canada LIMIT 10`;
 	let query = pool.query(sql, (err, results) => {
 		if (err) throw err;
 		res.send(results);

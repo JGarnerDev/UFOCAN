@@ -1,37 +1,45 @@
 // Modules //
-
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-// import { useSpring, animated } from "react-spring";
+import { createStore, applyMiddleware } from "redux";
+import { Provider } from "react-redux";
+
+// Reducers //
+import mainReducer from "./reducers/main";
 
 // Components //
-
+import Nav from "./components/Nav";
 import Home from "./components/Home";
+import LogIn from "./components/LogIn";
 
 // Styling //
-
 import "./styles/App.scss";
 
-// JSX
+const store = createStore(
+	mainReducer,
+	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 class App extends Component {
 	render() {
 		return (
 			<Router>
 				<div id="UFOCAN">
-					{/* <Nav />
+					<Nav />
 					<Switch>
-						<Route path="/" exact Component={Home} />
-						<Route path="/about" exact Component={About} />
-						<Route path="/sightings" exact Component={Sightings} />
-						<Route path="/sightings/:id" exact Component={SightingReview} />
-					</Switch> */}
-					<Home />
+						<Route path="/" exact component={Home} />
+						<Route path="/login" exact component={LogIn} />
+					</Switch>
 				</div>
 			</Router>
 		);
 	}
 }
 
-ReactDOM.render(<App />, document.getElementById("App"));
+ReactDOM.render(
+	<Provider store={store}>
+		<App />
+	</Provider>,
+	document.getElementById("App")
+);
