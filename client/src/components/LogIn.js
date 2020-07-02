@@ -1,15 +1,12 @@
-import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { notLoggingIn, loggingIn, logOut, logIn } from "../actions";
+import React, { Component } from "react";
 
-
-
-
-export default function LogIn() {
-	
-	return (
-		<main id="Login">
-			<button>Confirm</button>
-		</main>
-	);
+class LogIn extends Component {
+	componentWillMount() {
+		this.props.onLogInPage();
+	}
+	render() {
+		return <div></div>;
+	}
 }
+
+export default LogIn;

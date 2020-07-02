@@ -1,41 +1,22 @@
 // Modules //
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { createStore, applyMiddleware } from "redux";
+import { createStore, applyMiddleware, compose } from "redux";
 import { Provider } from "react-redux";
 
 // Reducers //
-import mainReducer from "./reducers/main";
 
 // Components //
-import Nav from "./components/Nav";
-import Home from "./components/Home";
-import LogIn from "./components/LogIn";
+import App from "./App";
 
 // Styling //
 import "./styles/App.scss";
 
-const store = createStore(
-	mainReducer,
-	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+// Redux
+import reducers from "./reducers";
 
-class App extends Component {
-	render() {
-		return (
-			<Router>
-				<div id="UFOCAN">
-					<Nav />
-					<Switch>
-						<Route path="/" exact component={Home} />
-						<Route path="/login" exact component={LogIn} />
-					</Switch>
-				</div>
-			</Router>
-		);
-	}
-}
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(reducers, composeEnhancers(applyMiddleware()));
 
 ReactDOM.render(
 	<Provider store={store}>
