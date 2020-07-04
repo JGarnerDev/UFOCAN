@@ -4,3 +4,4 @@ server/.env
 token.txt
 data/Mysql_creds.json
 data/__pycache__/
+data/.DS_Store
