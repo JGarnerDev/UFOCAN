@@ -68,7 +68,6 @@ class Location:
 
 
 def return_location_info():
-    reverse_geocode = Location()
     lat = input("lat: ")
     lon = input("lon: ")
 
@@ -76,7 +75,7 @@ def return_location_info():
         private_token = f.read()
 
     response = Location.make_request(lat, lon, private_token)
-
+    reverse_geocode = Location()
     address = reverse_geocode.address(response)
 
     print(f"The Address is: {address}")
@@ -84,4 +83,3 @@ def return_location_info():
 
 if __name__ == "__main__":
     return_location_info()
-
