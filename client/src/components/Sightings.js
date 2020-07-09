@@ -1,7 +1,12 @@
-import React, { Component } from "react";
+import React from "react";
+import SightingsContainer from "../containers/Sightings_Container";
 
-export default class Sightings extends Component {
-	render() {
-		return <div></div>;
-	}
-}
+const Home = (props) => {
+	return (
+		<React.Fragment>
+			<SightingsContainer {...props} />
+		</React.Fragment>
+	);
+};
+
+export default Home;

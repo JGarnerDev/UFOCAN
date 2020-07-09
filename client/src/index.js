@@ -1,26 +1,19 @@
-// Modules //
-import React, { Component } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
-import { createStore, applyMiddleware, compose } from "redux";
+import { BrowserRouter as Router } from "react-router-dom";
 import { Provider } from "react-redux";
+import store from "./store";
 
-// Reducers //
+import Routes from "./routes";
 
-// Components //
-import App from "./App";
-
-// Styling //
-import "./styles/App.scss";
-
-// Redux
-import reducers from "./reducers";
-
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(reducers, composeEnhancers(applyMiddleware()));
+import Nav from "./components/Nav";
 
 ReactDOM.render(
 	<Provider store={store}>
-		<App />
+		<Router>
+			<Nav />
+			<Routes />
+		</Router>
 	</Provider>,
-	document.getElementById("App")
+	document.getElementById("root")
 );

@@ -1,12 +1,12 @@
-import React, { Component } from "react";
+import React from "react";
+import LogInContainer from "../containers/LogIn_Container";
 
-class LogIn extends Component {
-	componentWillMount() {
-		this.props.onLogInPage();
-	}
-	render() {
-		return <div></div>;
-	}
-}
+const LogIn = (props) => {
+	return (
+		<React.Fragment>
+			<LogInContainer {...props} />
+		</React.Fragment>
+	);
+};
 
 export default LogIn;

@@ -1,7 +1,12 @@
-import React, { Component } from "react";
+import React from "react";
+import HomeContainer from "../containers/Home_Container";
 
-export default class Home extends Component {
-	render() {
-		return <main id="Home"></main>;
-	}
-}
+const Home = (props) => {
+	return (
+		<React.Fragment>
+			<HomeContainer {...props} />
+		</React.Fragment>
+	);
+};
+
+export default Home;
