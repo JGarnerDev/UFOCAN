@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
-import { setViewToHome } from "../store/actions";
-
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 
 class NavContainer extends Component {
@@ -26,11 +24,10 @@ class NavContainer extends Component {
 	render() {
 		return (
 			<Navbar bg="light" expand="sm">
-				<Navbar.Brand href="/">React-Bootstrap</Navbar.Brand>
+				<Navbar.Brand href="/">UFOCAN</Navbar.Brand>
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
 				<Navbar.Collapse id="basic-navbar-nav">
 					<Nav className="mr-auto">
-						{this.renderHomeLink()}
 						<NavDropdown title="Sightings" id="basic-nav-dropdown">
 							<NavDropdown.Item href="/sightings">All</NavDropdown.Item>
 							<NavDropdown.Item href="/sightings">Nearest</NavDropdown.Item>
@@ -40,7 +37,7 @@ class NavContainer extends Component {
 								Post New UFO Sighting
 							</NavDropdown.Item>
 						</NavDropdown>
-
+						{this.renderHomeLink()}
 						{this.renderAboutLink()}
 						{this.renderLogInLink()}
 					</Nav>

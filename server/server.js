@@ -2,14 +2,16 @@
 require("dotenv").config();
 // Modules
 const express = require("express");
-const cors = require("cors");
 const mysql = require("mysql");
 const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
 // Middleware
 const app = express();
 app.use(bodyParser.json());
+app.use(cookieParser());
 
 // Connection protocol
+
 const pool = mysql.createPool({
 	host: process.env.CLEARDB_HOST,
 	user: process.env.CLEARDB_USER,
@@ -36,7 +38,8 @@ app.post("/sightings", (req, res) => {
 	});
 });
 
-// Setting the server to listen at port 5000
+const port = process.env.PORT || 3001;
+
 app.listen(5000, () => {
-	console.log("server has started on port 5000");
+	console.log(`server has started on port ${port}`);
 });

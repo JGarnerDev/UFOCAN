@@ -12,7 +12,11 @@ class SightingsContainer extends Component {
 	render() {
 		console.log(this.props.view);
 
-		return <div id="Sightings"></div>;
+		return (
+			<div id="Sightings">
+				<h1>Sightings Page</h1>
+			</div>
+		);
 	}
 }
 

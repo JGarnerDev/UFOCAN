@@ -15,5 +15,6 @@ ReactDOM.render(
 			<Routes />
 		</Router>
 	</Provider>,
+
 	document.getElementById("root")
 );

@@ -10,7 +10,11 @@ class LoginContainer extends Component {
 	}
 
 	render() {
-		return <div id="LogIn"></div>;
+		return (
+			<div id="LogIn">
+				<h1>LogIn Page</h1>
+			</div>
+		);
 	}
 }
 

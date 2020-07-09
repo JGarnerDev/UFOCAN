@@ -1,0 +1,24 @@
+{
+    "name": "ufocan",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node server/server.js",
+        "server": "nodemon server/server.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/JGarnerDev/UFOCAN.git"
+    },
+    "engines": {
+        "node": "12.12.0"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/JGarnerDev/UFOCAN/issues"
+    },
+    "homepage": "https://github.com/JGarnerDev/UFOCAN#readme"
+}
