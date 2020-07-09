@@ -11,7 +11,7 @@ class Location:
         return "Reverse Geocoding using locationiq.com"
 
     @RateLimiter(max_calls=1, period=2)
-    def make_request(lat, lon, private_token, *args, **kwargs):
+    def make_request(self, lat, lon, private_token, *args, **kwargs):
         # get raw location data
         params = {
             "key": private_token,
