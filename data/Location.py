@@ -1,4 +1,5 @@
 import requests
+import pandas as pd
 from ratelimiter import RateLimiter
 
 
@@ -25,31 +26,31 @@ class Location:
 
         return content
 
-    def address(self, raw_location_info: dict):
+    def address(self, raw_location_info):
         address = raw_location_info.get("display_name")
         return address
 
-    def neighbourhood(self, raw_location_info: dict):
+    def neighbourhood(self, raw_location_info):
         neighbourhood = raw_location_info["address"].get("neighbourhood")
         return neighbourhood
 
-    def city(self, raw_location_info: dict):
+    def city(self, raw_location_info):
         city = raw_location_info["address"].get("city")
         return city
 
-    def province(self, raw_location_info: dict):
+    def province(self, raw_location_info):
         province = raw_location_info["address"].get("state")
         return province
 
-    def country_code(self, raw_location_info: dict):
+    def country_code(self, raw_location_info):
         country_code = raw_location_info["address"].get("country_code")
         return country_code
 
-    def country(self, raw_location_info: dict):
+    def country(self, raw_location_info):
         country = raw_location_info["address"].get("country")
         return country
 
-    def get_all(self, raw_location_info: dict):
+    def get_all(self, raw_location_info):
         try:
             all_info = pd.Series(
                 [
@@ -64,3 +65,23 @@ class Location:
         except:
             all_info = pd.Series(["", "", "", "", "", ""])
         return all_info
+
+
+def return_location_info():
+    reverse_geocode = Location()
+    lat = input("lat: ")
+    lon = input("lon: ")
+
+    with open("/Users/kellan/Documents/GitHub/UFOCAN/data/token.txt") as f:
+        private_token = f.read()
+
+    response = Location.make_request(lat, lon, private_token)
+
+    address = reverse_geocode.address(response)
+
+    print(f"The Address is: {address}")
+
+
+if __name__ == "__main__":
+    return_location_info()
+
