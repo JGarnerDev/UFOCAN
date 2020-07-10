@@ -1,8 +1,11 @@
 #Sightings {
-    flex-grow: 1;
-    max-height: 90%;
-    //
-    margin-bottom: 10px;
+    max-height: 92%;
+    min-width: 100%;
+    padding: 0;
+    margin: 0;
     //
     display: flex;
+    @media (max-width: 600px) {
+        flex-direction: column;
+    }
 }

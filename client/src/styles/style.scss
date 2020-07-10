@@ -17,10 +17,27 @@ body,
 #root {
     height: 100%;
     width: 100%;
+    background: $c4;
+}
+
+html {
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
 }
 
 #root {
     display: flex;
     flex-direction: column;
     justify-content: start;
+}
+
+#Sightings,
+#About,
+#Home {
+    margin-top: 70px;
 }

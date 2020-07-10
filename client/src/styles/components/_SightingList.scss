@@ -2,7 +2,10 @@
     display: flex;
     flex-direction: column;
     //
-    width: 250px;
+    max-width: 250px;
+    @media (max-width: 600px) {
+        max-width: 100%;
+    }
     margin: 0;
     padding: 0;
     //
@@ -13,10 +16,13 @@
         //
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: flex-end;
         //
         overflow-y: scroll;
         scroll-behavior: smooth;
+        @media (max-width: 600px) {
+            overflow-y: visible;
+        }
         //
         border-bottom: 1px solid rgb(117, 117, 117);
         border-left: 1px solid rgb(117, 117, 117);

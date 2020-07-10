@@ -5,6 +5,9 @@ import { setView } from "../store/actions";
 import { bindActionCreators } from "redux";
 import { Jumbotron, Container } from "react-bootstrap";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserSecret } from "@fortawesome/free-solid-svg-icons";
+
 class HomeContainer extends Component {
 	componentWillMount() {
 		this.props.setView("home");
@@ -13,15 +16,22 @@ class HomeContainer extends Component {
 	render() {
 		return (
 			<div id="Home">
-				<Jumbotron fluid id="">
-					<Container>
-						<h1>UFOCAN</h1>
+				<Jumbotron fluid id="jumbo">
+					<Container id="text">
+						<div>
+							<h1>UFOCAN</h1>
 
-						<p>
-							<strong> Aliens. Sighted. In Canada. </strong>
-						</p>
+							<p>
+								<strong> Aliens. Sighted. In Canada. </strong>
+							</p>
+						</div>
+						<FontAwesomeIcon icon={faUserSecret} id="jumbo-logo" size="6x" />
 					</Container>
 				</Jumbotron>
+				<p id="description">
+					We're not super serious about aliens, we just happened to find a free
+					data collection
+				</p>
 			</div>
 		);
 	}
