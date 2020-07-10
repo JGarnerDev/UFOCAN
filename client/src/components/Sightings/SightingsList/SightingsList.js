@@ -5,7 +5,8 @@ import { Container } from "react-bootstrap";
 import ListSettings from "./ListSettings";
 import SightingCard from "./SightingCard";
 
-let sightings = [];
+let sightings = new Array(30);
+sightings.fill(1);
 
 export default function SightingsList(props) {
 	function renderCards(sightings) {
@@ -19,7 +20,7 @@ export default function SightingsList(props) {
 	return (
 		<Container id="SightingsList">
 			<ListSettings />
-			{renderCards(sightings)}
+			<Container id="sightings-container">{renderCards(sightings)}</Container>
 		</Container>
 	);
 }

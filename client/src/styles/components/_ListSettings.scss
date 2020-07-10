@@ -1,4 +1,33 @@
 #ListSettings {
     height: 80px;
+    //
+    //
     background: $c2;
+    //
+    //
+    .dropleft {
+        height: 50%;
+        button {
+            width: 100%;
+            height: 100%;
+            //
+            border: 0;
+            border-radius: 0;
+            box-shadow: none;
+            //
+            background: $c3-light;
+            color: rgb(73, 73, 73);
+            //
+            text-align: left;
+            font-weight: 600;
+        }
+    }
+    #top {
+        border-bottom: 1px solid rgb(117, 117, 117);
+        border-left: 1px solid rgb(117, 117, 117);
+    }
+    #bottom {
+        border-bottom: 1px solid rgb(117, 117, 117);
+        border-left: 1px solid rgb(117, 117, 117);
+    }
 }
