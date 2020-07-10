@@ -33,7 +33,7 @@ class Location:
 
 
 class LocationTools(Location):
-    """make api requests and maintain LocationInfo functionality with Location object"""
+    """make api requests and maintain LocationInfo functionality with Location object."""
     def __init__(self):
         self.location_data = {}
 
@@ -42,7 +42,7 @@ class LocationTools(Location):
 
     @RateLimiter(max_calls=1, period=2)
     def make_request(self, lat, lon, private_token):
-        # get raw location data
+        """get raw location data."""
         request_param = {
             'key': private_token,
             'lat': str(lat),
