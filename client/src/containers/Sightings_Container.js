@@ -4,18 +4,22 @@ import { connect } from "react-redux";
 import { setView } from "../store/actions";
 import { bindActionCreators } from "redux";
 
+import { Container } from "react-bootstrap";
+
+import Sighting from "../components/Sightings/Sighting";
+import SightingList from "../components/Sightings/SightingsList/SightingsList";
+
 class SightingsContainer extends Component {
 	componentWillMount() {
 		this.props.setView("sightings");
 	}
 
 	render() {
-		console.log(this.props.view);
-
 		return (
-			<div id="Sightings">
-				<h1>Sightings Page</h1>
-			</div>
+			<Container fluid id="Sightings">
+				<Sighting />
+				<SightingList />
+			</Container>
 		);
 	}
 }
@@ -24,6 +28,7 @@ function mapStateToProps(state) {
 	let view = state.view.view;
 	return {
 		view: view,
+		sightings: [],
 	};
 }
 

@@ -20,5 +20,9 @@
     "bugs": {
         "url": "https://github.com/JGarnerDev/UFOCAN/issues"
     },
-    "homepage": "https://github.com/JGarnerDev/UFOCAN#readme"
+    "homepage": "https://github.com/JGarnerDev/UFOCAN#readme",
+    "dependencies": {
+        "express-mysql-session": "^2.1.4",
+        "express-session": "^1.17.1"
+    }
 }

@@ -15,10 +15,10 @@ class HomeContainer extends Component {
 			<div id="Home">
 				<Jumbotron fluid id="">
 					<Container>
-						<h1>Fluid jumbotron</h1>
+						<h1>UFOCAN</h1>
+
 						<p>
-							This is a modified jumbotron that occupies the entire horizontal
-							space of its parent.
+							<strong> Aliens. Sighted. In Canada. </strong>
 						</p>
 					</Container>
 				</Jumbotron>

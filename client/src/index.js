@@ -6,6 +6,8 @@ import store from "./store";
 
 import Routes from "./routes";
 
+import "./styles/style.scss";
+
 import Nav from "./components/Nav";
 
 ReactDOM.render(

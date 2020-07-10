@@ -1,0 +1,25 @@
+@import "./global/functions";
+@import "./global/variables";
+@import "./global/mixins";
+//
+@import "./components/About";
+@import "./components/Home";
+@import "./components/Login";
+@import "./components/Nav";
+@import "./components/Sighting";
+@import "./components/SightingList";
+@import "./components/ListSettings";
+@import "./components/Sightings";
+//
+html,
+body,
+#root {
+    height: 100%;
+    width: 100%;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}

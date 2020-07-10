@@ -1,5 +1,5 @@
 import React from "react";
-import SightingsContainer from "../containers/Sightings_Container";
+import SightingsContainer from "../../containers/Sightings_Container";
 
 const Home = (props) => {
 	return (

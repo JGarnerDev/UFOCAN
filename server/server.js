@@ -2,11 +2,11 @@
 require("dotenv").config();
 // Modules
 const express = require("express");
+const app = express();
 const mysql = require("mysql");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
-// Middleware
-const app = express();
+
 app.use(bodyParser.json());
 app.use(cookieParser());
 
@@ -23,23 +23,16 @@ const pool = mysql.createPool({
 pool.getConnection((err) => {
 	if (err) {
 		console.log(err);
+	} else {
+		console.log("SQL database connected. Good Morning, Austin!");
 	}
-	console.log("SQL database connected. Good Morning, Austin!");
 });
 
-// Getting all people
-app.post("/sightings", (req, res) => {
-	let start = req.body.start;
-	let end = req.body.end;
-	let sql = `SELECT * FROM ufos_canada LIMIT 10`;
-	let query = pool.query(sql, (err, results) => {
-		if (err) throw err;
-		res.send(results);
-	});
-});
+// GET
+// POST
 
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 5000;
 
-app.listen(5000, () => {
+app.listen(port, () => {
 	console.log(`server has started on port ${port}`);
 });

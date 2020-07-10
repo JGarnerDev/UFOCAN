@@ -30,16 +30,10 @@ class NavContainer extends Component {
 					<Nav className="mr-auto">
 						<NavDropdown title="Sightings" id="basic-nav-dropdown">
 							<NavDropdown.Item href="/sightings">All</NavDropdown.Item>
-							<NavDropdown.Item href="/sightings">Nearest</NavDropdown.Item>
-							<NavDropdown.Item href="/sightings">Most Recent</NavDropdown.Item>
-							<NavDropdown.Divider />
-							<NavDropdown.Item href="/sightings">
-								Post New UFO Sighting
-							</NavDropdown.Item>
 						</NavDropdown>
 						{this.renderHomeLink()}
 						{this.renderAboutLink()}
-						{this.renderLogInLink()}
+						{/* {this.renderLogInLink()} */}
 					</Nav>
 				</Navbar.Collapse>
 			</Navbar>
