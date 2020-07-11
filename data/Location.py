@@ -1,8 +1,6 @@
 # Tools for extracting location data from locationiq.com api
-import json
-import pandas as pd
-from ratelimiter import RateLimiter
 import requests
+from ratelimiter import RateLimiter
 
 
 class Location:
