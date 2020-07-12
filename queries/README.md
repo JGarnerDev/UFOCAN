@@ -1,5 +1,7 @@
 # SQL Queries for UNFOCAN
 
+setting things up and planning first:
+
 Folders:
 
 Province:
