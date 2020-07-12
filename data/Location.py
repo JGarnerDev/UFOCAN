@@ -1,12 +1,10 @@
 # Tools for extracting location data from locationiq.com api
-import pandas as pd
-from ratelimiter import RateLimiter
 import requests
+from ratelimiter import RateLimiter
 
 
-class LocationTools:
+class Location:
     """Extract info from raw location data."""
-    
     def __init__(self, raw_location_data):
         self.location_data = raw_location_data
 
@@ -22,31 +20,18 @@ class LocationTools:
     def city(self):
         return self.location_data['address'].get('city')
 
-    def province(self, raw_location_info):
+    def province(self):
         return self.location_data['address'].get('state')
 
-    def country_code(self, raw_location_info):
+    def country_code(self):
         return self.location_data['address'].get('country_code')
 
-    def country(self, raw_location_info):
+    def country(self):
         return self.location_data['address'].get('country')
 
-    def get_all(self, raw_location_info):
-        try:
-            all_info = pd.Series([
-                raw_location_info.get('display_name'),
-                raw_location_info['address'].get('neighbourhood'),
-                raw_location_info['address'].get('city'),
-                raw_location_info['address'].get('state'),
-                raw_location_info['address'].get('country_code'),
-                raw_location_info['address'].get('country'),
-            ])
-        except Exception:
-            all_info = pd.Series(['', '', '', '', '', ''])
-        return all_info
 
-
-class Location(LocationTools):
+class LocationTools(Location):
+    """make api requests and maintain LocationInfo functionality with Location object."""
     def __init__(self):
         self.location_data = {}
 
@@ -55,7 +40,7 @@ class Location(LocationTools):
 
     @RateLimiter(max_calls=1, period=2)
     def make_request(self, lat, lon, private_token):
-        # get raw location data
+        """get raw location data."""
         request_param = {
             'key': private_token,
             'lat': str(lat),
@@ -80,9 +65,9 @@ def main():
         """Take lat,lon and return address."""
         lat, lon = input('lat,lon: ').split(',')
 
-        reverse_geocode = Location()
-        reverse_geocode.make_request(lat, lon, private_token)
-        address = reverse_geocode.address()
+        rev_geo_location = LocationTools()
+        rev_geo_location.make_request(lat, lon, private_token)
+        address = rev_geo_location.address()
 
         print(f'The Address is: {address}')
 
