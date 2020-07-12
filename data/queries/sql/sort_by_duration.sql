@@ -10,4 +10,4 @@ WITH
 
 SELECT *
 FROM province
-order by province.seconds --{user choice for direction <asc or desc>}
+ORDER BY province.seconds --{user choice for direction <asc or desc>}
