@@ -31,7 +31,7 @@ class Location:
 
 
 class LocationTools(Location):
-    """make api requests and maintain LocationInfo functionality with Location object."""
+    """make api requests and maintain LocationInfo functionality."""
     def __init__(self):
         self.location_data = {}
 

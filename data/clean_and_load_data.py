@@ -34,15 +34,25 @@ def clean_and_fetch():
     2- Make API call for reverse geolocation
     3- Create csv file with output
     """
-    ufos = pd.read_csv(  # source ->https://github.com/planetsig/ufo-reports
-        r'UFOCAN/data/csv_files/scrubbed(original).csv')
+    # source ->https://github.com/planetsig/ufo-reports
+
+    ufos = pd.read_csv(r'UFOCAN/data/csv_files/scrubbed(original).csv',
+                       low_memory=False,
+                       usecols=[
+                           'datetime',
+                           'shape',
+                           'seconds',
+                           'duration',
+                           'comments',
+                           'latitude',
+                           'longitude',
+                           'country',
+                       ])
 
     ufos.columns = ufos.columns.str.lower().str.strip()
 
-    ufos_canada = ufos[ufos['country'] == 'ca'].copy()
-    ufos_canada.reset_index(drop=True, inplace=True)
-    ufos_canada.drop(columns=['state', 'city', 'country', 'date reported'],
-                     inplace=True)
+    ufos_can = ufos[ufos['country'] == 'ca'].copy()
+    ufos_can.reset_index(drop=True, inplace=True)
 
     location_columns = [
         'full_address',
@@ -55,23 +65,23 @@ def clean_and_fetch():
     ]
 
     for col in location_columns:
-        ufos_canada[col] = ''
+        ufos_can[col] = ''
 
-    ufos_canada[location_columns] = ufos_canada.apply(
+    ufos_can[location_columns] = ufos_can.apply(
         lambda x: get_location_data(x['latitude'], x['longitude']), axis=1)
 
-    ufos_canada = ufos_canada[ufos_canada['country'] == 'Canada']
+    ufos_can = ufos_can[ufos_can['country'] == 'Canada']
 
-    ufos_canada = ufos_canada.applymap({
+    ufos_can = ufos_can.map({
         'Northwest Territories': 'NWT',
         'British Columbia': 'BC',
         'Newfoundland and Labrador': 'Newfoundland',
         'Prince Edward Island': 'PEI',
     })
-    ufos_canada.reset_index(inplace=True, drop=True)
+    ufos_can.reset_index(inplace=True, drop=True)
 
     csv_name = 'canada_ufos_corrected.csv'
-    ufos_canada.to_csv(f'{csv_name}', index=False)
+    ufos_can.to_csv(f'{csv_name}', index=False)
 
     print(f'Data cleaned and output to csv titled: {csv_name}')
 
@@ -81,24 +91,22 @@ def load_mysql():
     with open('UFOCAN/data/Mysql_creds.json') as f:
         mysql_creds = json.load(f)
 
-    ufos_canada = pd.read_csv(
-        r'UFOCAN/data/csv_files/canada_ufos_corrected.csv')
-    ufos_canada.columns = ufos_canada.columns.str.title()
+    ufos_can = pd.read_csv(r'UFOCAN/data/csv_files/canada_ufos_corrected.csv')
+    ufos_can.columns = ufos_can.columns.str.title()
 
-    ufos_nunavut = ufos_canada[ufos_canada['Province'] == 'Nunavut']
-    ufos_quebec = ufos_canada[ufos_canada['Province'] == 'Quebec']
-    ufos_nwt = ufos_canada[ufos_canada['Province'] == 'NWT']
-    ufos_ontario = ufos_canada[ufos_canada['Province'] == 'Ontario']
-    ufos_bc = ufos_canada[ufos_canada['Province'] == 'BC']
-    ufos_alberta = ufos_canada[ufos_canada['Province'] == 'Alberta']
-    ufos_saskatchewan = ufos_canada[ufos_canada['Province'] == 'Saskatchewan']
-    ufos_manitoba = ufos_canada[ufos_canada['Province'] == 'Manitoba']
-    ufos_yukon = ufos_canada[ufos_canada['Province'] == 'Yukon']
-    ufos_newfoundland = ufos_canada[ufos_canada['Province'] == 'Newfoundland']
-    ufos_new_brunswick = ufos_canada[ufos_canada['Province'] ==
-                                     'New Brunswick']
-    ufos_nova_scotia = ufos_canada[ufos_canada['Province'] == 'Nova Scotia']
-    ufos_pei = ufos_canada[ufos_canada['Province'] == 'PEI']
+    ufos_nunavut = ufos_can[ufos_can['province'] == 'Nunavut']
+    ufos_quebec = ufos_can[ufos_can['province'] == 'Quebec']
+    ufos_nwt = ufos_can[ufos_can['province'] == 'NWT']
+    ufos_ontario = ufos_can[ufos_can['province'] == 'Ontario']
+    ufos_bc = ufos_can[ufos_can['province'] == 'BC']
+    ufos_alberta = ufos_can[ufos_can['province'] == 'Alberta']
+    ufos_saskatchewan = ufos_can[ufos_can['province'] == 'Saskatchewan']
+    ufos_manitoba = ufos_can[ufos_can['province'] == 'Manitoba']
+    ufos_yukon = ufos_can[ufos_can['province'] == 'Yukon']
+    ufos_newfoundland = ufos_can[ufos_can['province'] == 'Newfoundland']
+    ufos_new_brunswick = ufos_can[ufos_can['province'] == 'New Brunswick']
+    ufos_nova_scotia = ufos_can[ufos_can['province'] == 'Nova Scotia']
+    ufos_pei = ufos_can[ufos_can['province'] == 'PEI']
 
     table_list = (
         [ufos_nunavut, 'ufos_nunavut'],
@@ -136,5 +144,6 @@ def load_mysql():
     print('Tables loaded')
 
 
-if __name__ == "__main__":
-    clean_and_fetch();  load_mysql()
+if __name__ == '__main__':
+    clean_and_fetch()
+    load_mysql()
