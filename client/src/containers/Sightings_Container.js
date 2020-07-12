@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import { connect } from "react-redux";
-import { setView } from "../store/actions";
+import { setView, getInitialSelection } from "../store/actions";
 import { bindActionCreators } from "redux";
 
 import { Container } from "react-bootstrap";
@@ -12,13 +12,14 @@ import SightingList from "../components/Sightings/SightingsList/SightingsList";
 class SightingsContainer extends Component {
 	componentWillMount() {
 		this.props.setView("sightings");
+		this.props.getInitialSelection();
 	}
 
 	render() {
 		return (
 			<Container fluid id="Sightings">
 				<Sighting />
-				<SightingList />
+				<SightingList sightings={this.props.sightings} />
 			</Container>
 		);
 	}
@@ -28,12 +29,12 @@ function mapStateToProps(state) {
 	let view = state.view.view;
 	return {
 		view: view,
-		sightings: [],
+		sightings: state.sightings,
 	};
 }
 
 function mapDispatchToProps(dispatch) {
-	return bindActionCreators({ setView }, dispatch);
+	return bindActionCreators({ setView, getInitialSelection }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SightingsContainer);

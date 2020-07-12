@@ -1,0 +1,34 @@
+#sightings-link {
+    width: 50px;
+    margin-right: 25px;
+    -webkit-animation: pulsate-bck 2s ease-in-out infinite both;
+    animation: pulsate-bck 2s ease-in-out infinite both;
+    @-webkit-keyframes pulsate-bck {
+        0% {
+            -webkit-transform: scale(1);
+            transform: scale(1);
+        }
+        50% {
+            -webkit-transform: scale(0.9);
+            transform: scale(0.9);
+        }
+        100% {
+            -webkit-transform: scale(1);
+            transform: scale(1);
+        }
+    }
+    @keyframes pulsate-bck {
+        0% {
+            -webkit-transform: scale(1);
+            transform: scale(1);
+        }
+        50% {
+            -webkit-transform: scale(0.9);
+            transform: scale(0.9);
+        }
+        100% {
+            -webkit-transform: scale(1);
+            transform: scale(1);
+        }
+    }
+}

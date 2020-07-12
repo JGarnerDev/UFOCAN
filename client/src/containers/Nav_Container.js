@@ -20,7 +20,9 @@ class NavContainer extends Component {
 	}
 	renderSightingsLink() {
 		return this.props.view !== "sightings" ? (
-			<Nav.Link href="/sightings">Sightings</Nav.Link>
+			<Nav.Link href="/sightings" id="sightings-link">
+				Sightings
+			</Nav.Link>
 		) : null;
 	}
 	renderAboutLink() {

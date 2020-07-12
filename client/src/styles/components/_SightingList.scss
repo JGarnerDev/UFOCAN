@@ -12,7 +12,7 @@
     background: $c3;
     border-radius: 10px;
     #sightings-container {
-        flex-grow: 1;
+        min-height: 70vh;
         //
         display: flex;
         flex-direction: column;
