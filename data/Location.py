@@ -15,19 +15,19 @@ class Location:
         return self.location_data.get('display_name')
 
     def neighbourhood(self):
-        return self.location_data['address'].get('neighbourhood')
+        return self.location_data.get('address').get('neighbourhood')
 
     def city(self):
-        return self.location_data['address'].get('city')
+        return self.location_data.get('address').get('city')
 
     def province(self):
-        return self.location_data['address'].get('state')
+        return self.location_data.get('address').get('state')
 
     def country_code(self):
-        return self.location_data['address'].get('country_code')
+        return self.location_data.get('address').get('country_code')
 
     def country(self):
-        return self.location_data['address'].get('country')
+        return self.location_data.get('address').get('country')
 
 
 class LocationTools(Location):
