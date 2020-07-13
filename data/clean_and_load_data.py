@@ -141,7 +141,8 @@ def load_mysql():
             table[0].to_sql(table[1],
                             con=engine,
                             if_exists='replace',
-                            chunksize=1000)
+                            chunksize=1000,
+                            index=False)
 
         except Exception:
             print('Error has occured. Tables were not updated')

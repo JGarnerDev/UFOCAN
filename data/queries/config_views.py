@@ -1,5 +1,7 @@
-from sqlalchemy import create_engine
 import json
+from datetime import datetime
+
+from sqlalchemy import create_engine
 
 with open('Mysql_creds.json') as f:
     mysql_creds = json.load(f)
@@ -13,7 +15,6 @@ with open('Mysql_creds.json') as f:
 with open('queries/views/views.sql') as f:
     sql = f.read()
 
-test = engine.execute(sql)
+engine.execute(sql)
 
-for _r in test:
-    print(_r)
+print("Mysql views confirgured at {}".format(datetime.now()))
