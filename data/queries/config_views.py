@@ -1,22 +1,19 @@
-import mysql.connector
+from sqlalchemy import create_engine
+import json
 
-with open('UFOCAN/data/Mysql_creds.json') as f:
+with open('Mysql_creds.json') as f:
     mysql_creds = json.load(f)
 
-mydb = mysql.connector.connect(host=mysql_creds.get('host'),
-                               user=mysql_creds.get('user'),
-                               password=mysql_creds.get('pw'),
-                               databse=mysql_creds.get('db'))
+    engine = create_engine(
+        'mysql+pymysql://{user}:{pw}@us-cdbr-east-05.cleardb.net:3306/{db}'.
+        format(user=mysql_creds['user'],
+               pw=mysql_creds['pw'],
+               db=mysql_creds['db']))
 
-print(mydb)
+with open('queries/views/views.sql') as f:
+    sql = f.read()
 
+test = engine.execute(sql)
 
-
-# ---------------------------------- query
-
-# mycursor = mydb.cursor()
-# mycursor.execute("SELECT * FROM customers")
-# myresult = mycursor.fetchall()
-
-# for x in myresult:
-#     print(x)
+for _r in test:
+    print(_r)
