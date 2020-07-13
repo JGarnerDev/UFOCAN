@@ -1,4 +1,5 @@
 import json
+from datetime import datetime
 
 import pandas as pd
 from sqlalchemy import create_engine
@@ -34,8 +35,10 @@ def clean_and_fetch():
     2- Make API call for reverse geolocation
     3- Create csv file with output
     """
-    # source ->https://github.com/planetsig/ufo-reports
+    print("Data cleaning and reverse geolocation started at {}".format(
+        datetime.now()))
 
+    # source ->https://github.com/planetsig/ufo-reports
     ufos = pd.read_csv(r'csv_files/scrubbed(original).csv',
                        low_memory=False,
                        usecols=[
@@ -84,7 +87,8 @@ def clean_and_fetch():
     csv_name = 'csv_files/canada_ufos_corrected.csv'
     ufos_can.to_csv(f'{csv_name}', index=False)
 
-    print(f'Data cleaned and output to csv titled: {csv_name}')
+    print('Data cleaned and output to csv titled: {csv_name} at {time}'.format(
+        csv_name=csv_name, time=datetime.now()))
 
 
 def load_mysql():
@@ -142,7 +146,7 @@ def load_mysql():
         except Exception:
             print('Error has occured. Tables were not updated')
 
-    print('Tables loaded')
+    print('Tables loaded at {}'.format(datetime.now()))
 
 
 if __name__ == '__main__':
