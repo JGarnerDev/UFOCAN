@@ -8,7 +8,7 @@ from Location import LocationTools
 
 def get_location_data(lat, lon):
     """Get location data as a series using api."""
-    with open("UFOCAN/data/token.txt") as f:
+    with open("token.txt") as f:
         private_token = f.read()
 
     location = LocationTools()
@@ -36,7 +36,7 @@ def clean_and_fetch():
     """
     # source ->https://github.com/planetsig/ufo-reports
 
-    ufos = pd.read_csv(r'UFOCAN/data/csv_files/scrubbed(original).csv',
+    ufos = pd.read_csv(r'csv_files/scrubbed(original).csv',
                        low_memory=False,
                        usecols=[
                            'datetime',
@@ -81,7 +81,7 @@ def clean_and_fetch():
                               inplace=True)
     ufos_can.reset_index(inplace=True, drop=True)
 
-    csv_name = '/Users/kellan/Documents/GitHub/UFOCAN/data/csv_files/canada_ufos_corrected.csv'
+    csv_name = 'csv_files/canada_ufos_corrected.csv'
     ufos_can.to_csv(f'{csv_name}', index=False)
 
     print(f'Data cleaned and output to csv titled: {csv_name}')
@@ -89,10 +89,10 @@ def clean_and_fetch():
 
 def load_mysql():
     """Load UFO data into mysql workbench."""
-    with open('UFOCAN/data/Mysql_creds.json') as f:
+    with open('Mysql_creds.json') as f:
         mysql_creds = json.load(f)
 
-    ufos_can = pd.read_csv(r'UFOCAN/data/csv_files/canada_ufos_corrected.csv')
+    ufos_can = pd.read_csv(r'csv_files/canada_ufos_corrected.csv')
     ufos_can.columns = ufos_can.columns.str.title()
 
     ufos_nunavut = ufos_can[ufos_can['province'] == 'Nunavut']
