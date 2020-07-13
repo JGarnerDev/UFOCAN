@@ -72,15 +72,16 @@ def clean_and_fetch():
 
     ufos_can = ufos_can[ufos_can['country'] == 'Canada']
 
-    ufos_can = ufos_can.map({
+    ufos_can.province.replace(to_replace={
         'Northwest Territories': 'NWT',
         'British Columbia': 'BC',
         'Newfoundland and Labrador': 'Newfoundland',
         'Prince Edward Island': 'PEI',
-    })
+    },
+                              inplace=True)
     ufos_can.reset_index(inplace=True, drop=True)
 
-    csv_name = 'canada_ufos_corrected.csv'
+    csv_name = '/Users/kellan/Documents/GitHub/UFOCAN/data/csv_files/canada_ufos_corrected.csv'
     ufos_can.to_csv(f'{csv_name}', index=False)
 
     print(f'Data cleaned and output to csv titled: {csv_name}')
