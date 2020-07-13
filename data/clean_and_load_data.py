@@ -52,9 +52,9 @@ def clean_and_fetch():
                            'country',
                        ])
 
-    ufos.columns = ufos.columns.str.lower().str.strip()
 
     ufos_can = ufos[ufos['country'] == 'ca'].copy()
+    ufos_cam.drop(columns='country', inplace=True)
     ufos_can.reset_index(drop=True, inplace=True)
 
     location_columns = [
@@ -83,6 +83,7 @@ def clean_and_fetch():
     },
                               inplace=True)
     ufos_can.reset_index(inplace=True, drop=True)
+    ufos.columns = ufos.columns.str.lower().str.strip()
 
     csv_name = 'csv_files/canada_ufos_corrected.csv'
     ufos_can.to_csv(f'{csv_name}', index=False)
@@ -97,7 +98,6 @@ def load_mysql():
         mysql_creds = json.load(f)
 
     ufos_can = pd.read_csv(r'csv_files/canada_ufos_corrected.csv')
-    ufos_can.columns = ufos_can.columns.str.title()
 
     ufos_nunavut = ufos_can[ufos_can['province'] == 'Nunavut']
     ufos_quebec = ufos_can[ufos_can['province'] == 'Quebec']

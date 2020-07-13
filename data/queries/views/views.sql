@@ -1,5 +1,3 @@
---ufos_canada ( all entries from all tables)
-
 CREATE OR REPLACE 
 VIEW heroku_b7db332625d54c4.ufos_canada 
 
