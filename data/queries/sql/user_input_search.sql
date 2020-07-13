@@ -10,4 +10,4 @@ WITH
 
 SELECT *
 FROM province
-ORDER BY province.seconds --{user choice for direction <asc or desc>}
+WHERE province.comments like "%{}%"
