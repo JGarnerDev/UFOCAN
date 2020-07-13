@@ -1,19 +1,19 @@
 import React from "react";
+import cleanString from "../../../functions/stringCleaner";
 
 export default function SightingCard(props) {
-	let sighting = props.sighting[0];
-	let description = sighting.Description.split("&#44").join(", ");
+	let sighting = props.sighting;
+	let comments = cleanString(sighting.comments);
+
 	return (
 		<div id="SightingCard">
-			{sighting.City ? (
-				<div>
-					{sighting.City}, {sighting.Province}
-				</div>
-			) : (
-				<div>{sighting.Province}</div>
-			)}
-			<div>{sighting.Date}</div>
-			<div>{description}</div>
+			<p>
+				{sighting.City || sighting.city || (
+					<small>{sighting.full_address.split(",")[0]}</small>
+				)}{" "}
+			</p>
+			<h5>{sighting.province || sighting.Province}</h5>
+			<small>{sighting.datetime}</small>
 		</div>
 	);
 }

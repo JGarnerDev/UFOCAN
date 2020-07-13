@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
-import { Navbar, Nav, NavDropdown } from "react-bootstrap";
+import { Navbar, Nav } from "react-bootstrap";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserSecret } from "@fortawesome/free-solid-svg-icons";
@@ -52,9 +52,9 @@ class NavContainer extends Component {
 }
 
 function mapStateToProps(state) {
-	let view = state.view.view;
+	let current = state.view.current;
 	return {
-		view: view,
+		view: current,
 	};
 }
 
