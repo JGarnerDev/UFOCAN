@@ -1,4 +1,5 @@
 # Tools for extracting location data from locationiq.com api
+import ast
 import requests
 from ratelimiter import RateLimiter
 
@@ -6,7 +7,7 @@ from ratelimiter import RateLimiter
 class Location:
     """Extract info from raw location data."""
     def __init__(self, raw_location_data):
-        self.location_data = raw_location_data
+        self.location_data = ast.literal_eval(raw_location_data)
 
     def return_raw(self):
         return self.location_data
@@ -18,7 +19,25 @@ class Location:
         return self.location_data.get('address').get('neighbourhood')
 
     def city(self):
-        return self.location_data.get('address').get('city')
+        """City appears as city, village, town, or Null.
+        This will return in order:
+        city, town, village, road+county"""
+        cities_search = ['city', 'village', 'town',]
+        road_county = ['road', 'county']
+        city_info = []
+
+        for i in cities_search:
+            if self.location_data.get('address').get(i) is not None:
+                city_info.append(self.location_data.get('address').get(i))
+
+        if len(city_info) > 0:
+            return city_info[0]
+        else:
+            for i in road_county:
+                if self.location_data.get('address').get(i) is not None:
+                    city_info.append(self.location_data.get('address').get(i))
+            return ','.join(city_info)
+
 
     def province(self):
         return self.location_data.get('address').get('state')

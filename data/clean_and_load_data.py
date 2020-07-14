@@ -4,7 +4,7 @@ from datetime import datetime
 import pandas as pd
 from sqlalchemy import create_engine
 
-from Location import LocationTools
+from Location import LocationTools, Location
 
 
 def get_location_data(lat, lon):
@@ -28,7 +28,12 @@ def get_location_data(lat, lon):
     return location_as_series
 
 
-def clean_and_fetch():
+def get_city(raw):
+    location = Location(raw)
+    return location.city()
+
+
+def select_and_reverse_geocode():
     """Clean and reverse geolocate raw data.
     Operation:
     1- Clean up raw data source
@@ -51,7 +56,6 @@ def clean_and_fetch():
                            'longitude',
                            'country',
                        ])
-
 
     ufos_can = ufos[ufos['country'] == 'ca'].copy()
     ufos_cam.drop(columns='country', inplace=True)
@@ -85,7 +89,20 @@ def clean_and_fetch():
     ufos_can.reset_index(inplace=True, drop=True)
     ufos.columns = ufos.columns.str.lower().str.strip()
 
-    csv_name = 'csv_files/canada_ufos_corrected.csv'
+    csv_name = 'csv_files/canada_ufos_corrected_location_raw.csv'
+    ufos_can.to_csv(f'{csv_name}', index=False)
+
+    print(
+        'Data reverse geocoded and output to csv titled: {csv_name} at {time}'.
+        format(csv_name=csv_name, time=datetime.now()))
+
+
+def clean():
+    """clean ufo data."""
+    ufos_can = pd.read_csv(r'csv_files/canada_ufos_corrected_location_raw.csv')
+    ufos_can['city'] = ufos_can.apply(
+        lambda x: get_city(x['location_data_raw']), axis=1)
+    csv_name = 'csv_files/canada_ufos_cleaned.csv'
     ufos_can.to_csv(f'{csv_name}', index=False)
 
     print('Data cleaned and output to csv titled: {csv_name} at {time}'.format(
@@ -97,7 +114,7 @@ def load_mysql():
     with open('Mysql_creds.json') as f:
         mysql_creds = json.load(f)
 
-    ufos_can = pd.read_csv(r'csv_files/canada_ufos_corrected.csv')
+    ufos_can = pd.read_csv(r'csv_files/canada_ufos_cleaned.csv')
 
     ufos_nunavut = ufos_can[ufos_can['province'] == 'Nunavut']
     ufos_quebec = ufos_can[ufos_can['province'] == 'Quebec']
@@ -114,19 +131,19 @@ def load_mysql():
     ufos_pei = ufos_can[ufos_can['province'] == 'PEI']
 
     table_list = (
-        [ufos_nunavut, 'ufos_nunavut'],
-        [ufos_quebec, 'ufos_quebec'],
-        [ufos_nwt, 'ufos_nwt'],
-        [ufos_ontario, 'ufos_ontario'],
+        [ufos_nunavut, 'ufos_nu'],
+        [ufos_quebec, 'ufos_qc'],
+        [ufos_nwt, 'ufos_nt'],
+        [ufos_ontario, 'ufos_on'],
         [ufos_bc, 'ufos_bc'],
-        [ufos_alberta, 'ufos_alberta'],
-        [ufos_saskatchewan, 'ufos_saskatchewan'],
-        [ufos_manitoba, 'ufos_manitoba'],
-        [ufos_yukon, 'ufos_yukon'],
-        [ufos_newfoundland, 'ufos_newfoundland'],
-        [ufos_new_brunswick, 'ufos_new_brunswick'],
-        [ufos_nova_scotia, 'ufos_nova_scotia'],
-        [ufos_pei, 'ufos_pei'],
+        [ufos_alberta, 'ufos_ab'],
+        [ufos_saskatchewan, 'ufos_sk'],
+        [ufos_manitoba, 'ufos_mb'],
+        [ufos_yukon, 'ufos_yt'],
+        [ufos_newfoundland, 'ufos_nl'],
+        [ufos_new_brunswick, 'ufos_nb'],
+        [ufos_nova_scotia, 'ufos_ns'],
+        [ufos_pei, 'ufos_pe'],
     )
 
     engine = create_engine(
@@ -151,5 +168,6 @@ def load_mysql():
 
 
 if __name__ == '__main__':
-    clean_and_fetch()
+    #select_and_reverse_geocode()
+    clean()
     load_mysql()

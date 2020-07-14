@@ -1,11 +1,11 @@
 CREATE OR REPLACE 
-VIEW heroku_b7db332625d54c4.ufos_canada 
+VIEW heroku_b7db332625d54c4.ufos_ca
 
-AS 
+AS
 
 
     SELECT *
-    FROM ufos_alberta
+    FROM ufos_ab
 
 UNION
 
@@ -15,49 +15,54 @@ UNION
 UNION
 
     SELECT *
-    FROM ufos_manitoba
+    FROM ufos_mb
 
 UNION
 
     SELECT *
-    FROM ufos_new_brunswick
+    FROM ufos_nb
 
 UNION
 
     SELECT *
-    FROM ufos_newfoundland
+    FROM ufos_nl
 
 UNION
 
     SELECT *
-    FROM ufos_nova_scotia
+    FROM ufos_ns
 
 UNION
 
     SELECT *
-    FROM ufos_nunavut
+    FROM ufos_nt
 
 UNION
 
     SELECT *
-    FROM ufos_nwt
+    FROM ufos_nu
 
 UNION
 
     SELECT *
-    FROM ufos_ontario
+    FROM ufos_on
 
 UNION
 
     SELECT *
-    FROM ufos_pei
+    FROM ufos_pe
 
 UNION
 
     SELECT *
-    FROM ufos_saskatchewan
+    FROM ufos_qc
 
 UNION
 
     SELECT *
-    FROM ufos_yukon;
+    FROM ufos_sk
+
+UNION
+
+    SELECT *
+    FROM ufos_yt
