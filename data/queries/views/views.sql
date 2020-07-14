@@ -1,5 +1,5 @@
 CREATE OR REPLACE 
-VIEW heroku_b7db332625d54c4.ufos_ca
+VIEW {db}.ufos_ca
 
 AS
 

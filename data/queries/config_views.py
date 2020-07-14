@@ -15,6 +15,6 @@ with open('Mysql_creds.json') as f:
 with open('queries/views/views.sql') as f:
     sql = f.read()
 
-engine.execute(sql)
+engine.execute(sql.format(db=mysql_creds['db']))
 
 print("Mysql views confirgured at {}".format(datetime.now()))
