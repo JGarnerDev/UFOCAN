@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import {
 	setView,
 	getInitialSelection,
+	getSelection,
 	setMapView,
 	setRegion,
 } from "../store/actions";
@@ -46,12 +47,14 @@ function mapStateToProps(state) {
 		showing: state.sightings.showing,
 		viewport: state.map.viewport,
 		region: state.region,
+		sortOption: state.sortOption,
+		amount: state.amount,
 	};
 }
 
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators(
-		{ setView, getInitialSelection, setMapView, setRegion },
+		{ setView, getSelection, getInitialSelection, setMapView, setRegion },
 		dispatch
 	);
 }

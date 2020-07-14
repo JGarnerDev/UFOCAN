@@ -19,21 +19,52 @@ export function setRegion(region) {
 		payload: region,
 	};
 }
+export function setAmount(amount) {
+	return {
+		type: "SET_AMOUNT",
+		payload: amount,
+	};
+}
+export function setSortOption(sortOption) {
+	return {
+		type: "SET_SORT_OPTION",
+		payload: sortOption,
+	};
+}
 
 export function getInitialSelection() {
-	const request = axios.get(`${URL}/ca`).then((response) => {
+	const request = axios({
+		method: "post",
+		url: `/sightings`,
+		data: {
+			region: "ca",
+			amount: 10,
+			sorting: null,
+		},
+	}).then((response) => {
 		return response.data.map((nestedArray) => {
 			return nestedArray[0];
 		});
 	});
 	return {
-		type: "GET_INITIAL_SELECTION",
+		type: "GET_SELECTION",
 		payload: request,
 	};
 }
 
-export function getSelection(region) {
-	const request = axios.get(`${URL}/${region}`).then((response) => {
+export function getSelection(region, amount, sorting) {
+	if (sorting === "Sort by new") {
+		sorting = "datetime";
+	}
+	const request = axios({
+		method: "post",
+		url: `/sightings`,
+		data: {
+			region,
+			amount,
+			sorting,
+		},
+	}).then((response) => {
 		return response.data.map((nestedArray) => {
 			return nestedArray[0];
 		});

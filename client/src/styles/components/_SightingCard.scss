@@ -1,5 +1,4 @@
 #SightingCard {
-    min-height: 100px;
     width: 100%;
     min-width: 150px;
     //
@@ -9,6 +8,20 @@
     align-items: center;
     //
     margin-top: 10px;
+    border: solid 5px $c3;
+    border-radius: 40px;
     //
-    background: grey;
+    background: $c3-light;
+    opacity: 0.6;
+    box-shadow: 0 4px 4px 0px rgba(0, 0, 0, 0.4);
+    //
+    #date {
+        font-weight: 600;
+    }
+    //
+    p {
+        margin: 0;
+        max-width: 100%;
+        word-wrap: break-word;
+    }
 }

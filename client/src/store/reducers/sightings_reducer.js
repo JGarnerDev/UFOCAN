@@ -3,6 +3,8 @@ export default function (
 		data: [],
 		showing: { latitude: 65, longitude: -100, zoom: 2.2 },
 		region: "ca",
+		amount: 10,
+		sortOption: null,
 	},
 	action
 ) {
@@ -16,11 +18,14 @@ export default function (
 			return {
 				...state,
 				data: action.payload,
-				showing: action.payload[0],
 			};
 
 		case "SET_REGION":
 			return { ...state, region: action.payload };
+		case "SET_AMOUNT":
+			return { ...state, amount: action.payload };
+		case "SET_SORT_OPTION":
+			return { ...state, sortOption: action.payload };
 
 		default:
 			return state;
