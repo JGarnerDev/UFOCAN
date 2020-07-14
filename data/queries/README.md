@@ -3,13 +3,9 @@
 WIP. Starting to setup SQL for returning UFO info
 
 Views:
-views will allow us have easily reusable queries
- - all_canada
+* Views are configured in `data/queries/views/views.sql`
+* Views are created or updated by running `data/queries/config_views.py`
 
 SQL:
-
-These sql queries have spots where user defined params can be formatted into the string before querying the database.
-
- - sort by date
- - sort by duration
- - sort by location
+all queries are located in UFOCAN/data/queries/sql/
+* These sql queries have spots where user defined params can be formatted into the string before querying the database.
