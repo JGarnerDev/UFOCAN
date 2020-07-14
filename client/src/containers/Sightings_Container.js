@@ -1,7 +1,12 @@
 import React, { Component } from "react";
 
 import { connect } from "react-redux";
-import { setView, getInitialSelection, setMapView } from "../store/actions";
+import {
+	setView,
+	getInitialSelection,
+	setMapView,
+	setRegion,
+} from "../store/actions";
 import { bindActionCreators } from "redux";
 
 import { Container } from "react-bootstrap";
@@ -27,6 +32,7 @@ class SightingsContainer extends Component {
 				<SightingsList
 					sightings={this.props.sightings}
 					setMapView={setMapView}
+					setRegion={setRegion}
 				/>
 			</Container>
 		);
@@ -39,12 +45,13 @@ function mapStateToProps(state) {
 		sightings: state.sightings.data,
 		showing: state.sightings.showing,
 		viewport: state.map.viewport,
+		region: state.region,
 	};
 }
 
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators(
-		{ setView, getInitialSelection, setMapView },
+		{ setView, getInitialSelection, setMapView, setRegion },
 		dispatch
 	);
 }

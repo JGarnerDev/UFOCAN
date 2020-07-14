@@ -3,9 +3,6 @@ export default function (
 		viewport: {
 			width: "100%",
 			height: "100%",
-			latitude: 50,
-			longitude: 50,
-			zoom: 4,
 		},
 	},
 	action
@@ -19,7 +16,7 @@ export default function (
 					height: "100%",
 					latitude: action.payload.latitude,
 					longitude: action.payload.longitude,
-					zoom: 4,
+					zoom: action.payload.zoom || 7,
 				},
 			};
 

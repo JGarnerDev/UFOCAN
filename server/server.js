@@ -35,47 +35,159 @@ pool.getConnection((err) => {
 
 // GET
 
-app.get("", (req, res) => {
-	let query = "";
-
-	pool.query(queries, (err, result) => {
+//	This is what is served on page load for sightings
+app.get("/ca", (req, res) => {
+	let query = "SELECT * FROM ufos_ca ORDER BY RAND() LIMIT 20;";
+	pool.query(query, (err, result) => {
 		if (err) throw err;
-		res.send(result);
+		let results = [];
+		result.forEach((result) => {
+			results.push([result]);
+		});
+		res.send(results);
 	});
 });
-
-//
-app.get("/canada/rand", (req, res) => {
-	let queryAB = "SELECT * FROM ufos_ab ORDER BY RAND() LIMIT 1;";
-	let queryBC = "SELECT * FROM ufos_bc ORDER BY RAND() LIMIT 1;";
-	let queryMB = "SELECT * FROM ufos_mb ORDER BY RAND() LIMIT 1;";
-	let queryNB = "SELECT * FROM ufos_nb ORDER BY RAND() LIMIT 1;";
-	let queryNL = "SELECT * FROM ufos_nl ORDER BY RAND() LIMIT 1;";
-	let queryNT = "SELECT * FROM ufos_nt ORDER BY RAND() LIMIT 1;";
-	let queryNS = "SELECT * FROM ufos_ns ORDER BY RAND() LIMIT 1;";
-	let queryNU = "SELECT * FROM ufos_nu ORDER BY RAND() LIMIT 1;";
-	let queryON = "SELECT * FROM ufos_on ORDER BY RAND() LIMIT 1;";
-	let queryPE = "SELECT * FROM ufos_pe ORDER BY RAND() LIMIT 1;";
-	let queryQC = "SELECT * FROM ufos_qc ORDER BY RAND() LIMIT 1;";
-	let querySK = "SELECT * FROM ufos_sk ORDER BY RAND() LIMIT 1;";
-	let queryYT = "SELECT * FROM ufos_yt ORDER BY RAND() LIMIT 1;";
-	let queries =
-		queryAB +
-		queryBC +
-		queryMB +
-		queryNB +
-		queryNL +
-		queryNT +
-		queryNS +
-		queryNU +
-		queryON +
-		queryPE +
-		queryQC +
-		querySK +
-		queryYT;
-	pool.query(queries, (err, result) => {
+app.get("/ab", (req, res) => {
+	let query = "SELECT * FROM ufos_ab ORDER BY RAND() LIMIT 20;";
+	pool.query(query, (err, result) => {
 		if (err) throw err;
-		res.send(result);
+		let results = [];
+		result.forEach((result) => {
+			results.push([result]);
+		});
+		res.send(results);
+	});
+});
+app.get("/bc", (req, res) => {
+	let query = "SELECT * FROM ufos_bc ORDER BY RAND() LIMIT 20;";
+	pool.query(query, (err, result) => {
+		if (err) throw err;
+		let results = [];
+		result.forEach((result) => {
+			results.push([result]);
+		});
+		res.send(results);
+	});
+});
+app.get("/mb", (req, res) => {
+	let query = "SELECT * FROM ufos_mb ORDER BY RAND() LIMIT 20;";
+	pool.query(query, (err, result) => {
+		if (err) throw err;
+		let results = [];
+		result.forEach((result) => {
+			results.push([result]);
+		});
+		res.send(results);
+	});
+});
+app.get("/nb", (req, res) => {
+	let query = "SELECT * FROM ufos_nb ORDER BY RAND() LIMIT 20;";
+	pool.query(query, (err, result) => {
+		if (err) throw err;
+		let results = [];
+		result.forEach((result) => {
+			results.push([result]);
+		});
+		res.send(results);
+	});
+});
+app.get("/nl", (req, res) => {
+	let query = "SELECT * FROM ufos_nl ORDER BY RAND() LIMIT 20;";
+	pool.query(query, (err, result) => {
+		if (err) throw err;
+		let results = [];
+		result.forEach((result) => {
+			results.push([result]);
+		});
+		res.send(results);
+	});
+});
+app.get("/nt", (req, res) => {
+	let query = "SELECT * FROM ufos_nt ORDER BY RAND() LIMIT 20;";
+	pool.query(query, (err, result) => {
+		if (err) throw err;
+		let results = [];
+		result.forEach((result) => {
+			results.push([result]);
+		});
+		res.send(results);
+	});
+});
+app.get("/ns", (req, res) => {
+	let query = "SELECT * FROM ufos_ns ORDER BY RAND() LIMIT 20;";
+	pool.query(query, (err, result) => {
+		if (err) throw err;
+		let results = [];
+		result.forEach((result) => {
+			results.push([result]);
+		});
+		res.send(results);
+	});
+});
+app.get("/nu", (req, res) => {
+	let query = "SELECT * FROM ufos_nu ORDER BY RAND() LIMIT 20;";
+	pool.query(query, (err, result) => {
+		if (err) throw err;
+		let results = [];
+		result.forEach((result) => {
+			results.push([result]);
+		});
+		res.send(results);
+	});
+});
+app.get("/on", (req, res) => {
+	let query = "SELECT * FROM ufos_on ORDER BY RAND() LIMIT 20;";
+	pool.query(query, (err, result) => {
+		if (err) throw err;
+		let results = [];
+		result.forEach((result) => {
+			results.push([result]);
+		});
+		res.send(results);
+	});
+});
+app.get("/pe", (req, res) => {
+	let query = "SELECT * FROM ufos_pe ORDER BY RAND() LIMIT 20;";
+	pool.query(query, (err, result) => {
+		if (err) throw err;
+		let results = [];
+		result.forEach((result) => {
+			results.push([result]);
+		});
+		res.send(results);
+	});
+});
+app.get("/qc", (req, res) => {
+	let query = "SELECT * FROM ufos_qc ORDER BY RAND() LIMIT 20;";
+	pool.query(query, (err, result) => {
+		if (err) throw err;
+		let results = [];
+		result.forEach((result) => {
+			results.push([result]);
+		});
+		res.send(results);
+	});
+});
+app.get("/sk", (req, res) => {
+	let query = "SELECT * FROM ufos_sk ORDER BY RAND() LIMIT 20;";
+	pool.query(query, (err, result) => {
+		if (err) throw err;
+		let results = [];
+		result.forEach((result) => {
+			results.push([result]);
+		});
+		res.send(results);
+	});
+});
+app.get("/yt", (req, res) => {
+	let query = "SELECT * FROM ufos_yt ORDER BY RAND() LIMIT 20;";
+	pool.query(query, (err, result) => {
+		if (err) throw err;
+		let results = [];
+		result.forEach((result) => {
+			results.push([result]);
+		});
+		res.send(results);
 	});
 });
 

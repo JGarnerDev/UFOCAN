@@ -7,29 +7,35 @@ import { faRocket } from "@fortawesome/free-solid-svg-icons";
 
 class MapMarker extends Component {
 	state = {
-		showing: false,
+		showingComment: false,
 	};
 	render() {
 		return (
-			<div className="marker">
+			<div className="marker" style={{ zIndex: 0 }}>
 				<FontAwesomeIcon
 					icon={faRocket}
 					size="1x"
 					color={"red"}
+					style={this.state.showingComment ? { opacity: 1 } : { opacity: 0.5 }}
 					onMouseEnter={() => {
 						this.setState({
-							showing: true,
+							showingComment: true,
 						});
 					}}
 					onMouseLeave={() => {
 						this.setState({
-							showing: false,
+							showingComment: false,
 						});
 					}}
 				/>{" "}
-				{this.state.showing ? (
-					<div className="comment-popup">
-						{cleanString(this.props.comments)}
+				{this.state.showingComment ? (
+					<div
+						className="comment-popup"
+						style={{ zIndex: Math.abs(this.props.longitude) }}
+					>
+						<p style={{ zIndex: Math.abs(this.props.longitude) }}>
+							{cleanString(this.props.comments)}
+						</p>
 					</div>
 				) : null}
 			</div>

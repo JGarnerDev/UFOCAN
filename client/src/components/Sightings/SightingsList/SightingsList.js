@@ -10,7 +10,7 @@ export default function SightingsList(props) {
 
 	return (
 		<Container id="SightingsList">
-			<ListSettings />
+			<ListSettings setRegion={props.setRegion} />
 			<Container id="sightings-container">
 				{sightings.length > 0
 					? sightings.map((sighting, i) => {
