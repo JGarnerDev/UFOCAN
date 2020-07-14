@@ -29,8 +29,18 @@ class HomeContainer extends Component {
 					</Container>
 				</Jumbotron>
 				<p id="description">
+					This is a work in progress!
+					<br />
+					<br />
+					So far, navigating to the 'sightings' page will display one UFO
+					sighting per province/territory (selected randomly from our data
+					collection), and you can read the author comments by hovering over
+					them. Click one of the sightings in the list to the right to focus the
+					map on it. Have fun!
+					<br />
+					<br />
 					We're not super serious about aliens, we just happened to find a free
-					data collection
+					data collection.
 				</p>
 			</div>
 		);

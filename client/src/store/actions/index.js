@@ -21,9 +21,9 @@ export function getInitialSelection() {
 	};
 }
 
-export function setMapView(location) {
+export function setMapView(sighting) {
 	return {
 		type: "SET_MAP_VIEW",
-		payload: location,
+		payload: sighting,
 	};
 }

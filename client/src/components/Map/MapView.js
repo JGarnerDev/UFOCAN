@@ -1,5 +1,5 @@
 import React from "react";
-import MapContainer from "../../containers/Map_Container";
+import MapContainer from "../../containers/MapView_Container";
 
 const Map = (props) => {
 	return (

@@ -7,7 +7,7 @@ import { bindActionCreators } from "redux";
 import { Container } from "react-bootstrap";
 
 import SightingsList from "../components/Sightings/SightingsList/SightingsList";
-import Map from "../components/Sightings/Map";
+import MapView from "../components/Map/MapView";
 
 class SightingsContainer extends Component {
 	componentDidMount() {
@@ -19,12 +19,15 @@ class SightingsContainer extends Component {
 		return (
 			<Container fluid id="Sightings">
 				{this.props.sightings.length > 0 ? (
-					<Map {...this.props} />
+					<MapView {...this.props} />
 				) : (
 					<div id="Sighting"></div>
 				)}
 
-				<SightingsList sightings={this.props.sightings} />
+				<SightingsList
+					sightings={this.props.sightings}
+					setMapView={setMapView}
+				/>
 			</Container>
 		);
 	}
