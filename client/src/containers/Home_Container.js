@@ -29,14 +29,12 @@ class HomeContainer extends Component {
 					</Container>
 				</Jumbotron>
 				<p id="description">
-					This is a work in progress!
+					This is a work in progress! <br />
+					<br /> SQL Database structure and cleaning by Kellan Selig, front end
+					and back end by Jeffrey Garner
 					<br />
 					<br />
-					So far, navigating to the 'sightings' page will display one UFO
-					sighting per province/territory (selected randomly from our data
-					collection), and you can read the author comments by hovering over
-					them. Click one of the sightings in the list to the right to focus the
-					map on it. Have fun!
+					Go to the sightings page and have fun!
 					<br />
 					<br />
 					We're not super serious about aliens, we just happened to find a free
