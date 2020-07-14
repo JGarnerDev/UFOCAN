@@ -168,6 +168,6 @@ def load_mysql():
 
 
 if __name__ == '__main__':
-    #select_and_reverse_geocode()
+    select_and_reverse_geocode()
     clean()
     load_mysql()
