@@ -1,13 +1,26 @@
-WITH
-    province
-    AS
+SELECT
+    r.*
+FROM
     (
-        SELECT *
-        FROM {user_choice}
-        --should be replaced with the table for prov user selects
-    )
-
-
-SELECT *
-FROM province
-ORDER BY province.datetime --{user choice for direction <asc or desc>}
+        SELECT
+            STR_TO_DATE(datetime, '%m/%e/%Y') AS dt,
+            country,
+            shape,
+            seconds,
+            duration,
+            comments,
+            latitude,
+            longitude,
+            full_address,
+            neighbourhood,
+            city,
+            province,
+            country_code,
+            location_data_raw
+        FROM
+            ufos_ ${region}
+    ) r
+ORDER BY
+    r.dt ${sorting_direction}
+LIMIT
+    ${amount};
