@@ -5,4 +5,3 @@ token.txt
 data/Mysql_creds.json
 data/__pycache__/
 data/.DS_Store
-data/queries/sql/test_sql.sql
