@@ -7,7 +7,6 @@ export default function (
 	},
 	action
 ) {
-	console.log(action.type);
 	switch (action.type) {
 		case "SET_MAP_VIEW":
 			return {
@@ -17,6 +16,14 @@ export default function (
 					latitude: action.payload.latitude,
 					longitude: action.payload.longitude,
 					zoom: action.payload.zoom || 7,
+				},
+			};
+		case "CSI_ZOOM":
+			return {
+				...state,
+				viewport: {
+					...state.viewport,
+					zoom: Math.max((state.viewport.zoom += action.payload), 2),
 				},
 			};
 

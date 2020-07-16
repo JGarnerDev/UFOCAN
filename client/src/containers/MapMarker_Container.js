@@ -9,8 +9,6 @@ import { connect } from "react-redux";
 import { setMapView } from "../store/actions";
 import { bindActionCreators } from "redux";
 
-import { Container } from "react-bootstrap";
-
 class MapMarkerContainer extends Component {
 	state = { showingComment: false };
 	render() {
@@ -38,15 +36,19 @@ class MapMarkerContainer extends Component {
 							latitude: this.props.latitude,
 						});
 					}}
-				/>{" "}
+				/>
+
 				{this.state.showingComment ? (
-					<div
-						className="comment-popup"
-						style={{ zIndex: Math.abs(this.props.longitude) }}
-					>
-						<p style={{ zIndex: Math.abs(this.props.longitude) }}>
-							{cleanString(this.props.comments)}
-						</p>
+					<div>
+						<div
+							className="comment-popup"
+							style={{ zIndex: Math.abs(this.props.longitude) }}
+						>
+							<div className="identifier">{this.props.identifier}</div>
+							<p style={{ zIndex: Math.abs(this.props.longitude) }}>
+								{cleanString(this.props.comments)}
+							</p>
+						</div>
 					</div>
 				) : null}
 			</div>

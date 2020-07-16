@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import { connect } from "react-redux";
+
 import {
 	setView,
 	getInitialSelection,
@@ -8,6 +9,7 @@ import {
 	setMapView,
 	setRegion,
 } from "../store/actions";
+
 import { bindActionCreators } from "redux";
 
 import { Container } from "react-bootstrap";

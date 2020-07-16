@@ -1,21 +1,41 @@
-#SightingCard {
+.SightingCard {
     width: 100%;
     min-width: 150px;
     //
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     //
-    margin-top: 10px;
+    margin-top: 5px;
     border: solid 5px $c3;
-    border-radius: 40px;
     //
     background: $c3-light;
     opacity: 0.6;
     box-shadow: 0 4px 4px 0px rgba(0, 0, 0, 0.4);
     //
-    #date {
+    line-height: 15px;
+    //
+    //
+    .identifier {
+        min-width: 25px;
+        height: 25px;
+        //
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        //
+        background: $c1;
+        border: 2px solid black;
+        border-radius: 10px;
+        //
+        font-weight: 600;
+    }
+    //
+    .location {
+        width: 65%;
+    }
+    //
+    .date {
         font-weight: 600;
     }
     //
@@ -23,5 +43,9 @@
         margin: 0;
         max-width: 100%;
         word-wrap: break-word;
+    }
+    h5 {
+        margin: 2px;
+        line-height: 18px;
     }
 }

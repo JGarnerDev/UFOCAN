@@ -33,10 +33,12 @@ pool.getConnection((err) => {
 	}
 });
 
+// The general endpoint - receives region, amount, and sorting method from ListSettings      container , returns the query results.
+
 app.post("/sightings", (req, res) => {
 	let region = req.body.region || "ca";
 	let amount = req.body.amount || 10;
-	let sorting = req.body.sorting || "datetime";
+	let sorting = req.body.sorting || null;
 	let query = "";
 	if (sorting === null) {
 		sorting = "RAND()";
@@ -44,7 +46,7 @@ app.post("/sightings", (req, res) => {
 	} else if (sorting === "datetime") {
 		query = `SELECT * FROM ufos_${region} ORDER BY ${sorting} DESC LIMIT ${amount};`;
 	} else {
-		query = `SELECT * FROM ufos_${region} ORDER BY datetime DESC LIMIT ${amount};`;
+		query = `SELECT * FROM ufos_${region} ORDER BY ${sorting} DESC LIMIT ${amount};`;
 	}
 	pool.query(query, (err, result) => {
 		if (err) throw err;

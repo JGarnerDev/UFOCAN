@@ -19,6 +19,7 @@ export default function SightingsList(props) {
 									sighting={sighting}
 									setMapView={props.setMapView}
 									key={i}
+									identifier={i + 1}
 								/>
 							);
 					  })

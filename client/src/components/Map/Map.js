@@ -19,7 +19,7 @@ export default function Map(props) {
 					longitude={sighting.longitude}
 					className="marker"
 				>
-					<MapMarker {...sighting} />
+					<MapMarker {...sighting} identifier={i + 1} />
 				</Marker>
 			))}
 		</ReactMapGL>

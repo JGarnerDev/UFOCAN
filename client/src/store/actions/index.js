@@ -130,3 +130,9 @@ export function setMapView(sighting) {
 		payload: sighting,
 	};
 }
+export function CSI_zoom(val) {
+	return {
+		type: "CSI_ZOOM",
+		payload: val,
+	};
+}

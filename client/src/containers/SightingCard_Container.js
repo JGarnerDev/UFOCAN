@@ -10,18 +10,22 @@ class SightingCardContainer extends Component {
 
 		return (
 			<button
-				id="SightingCard"
+				className="SightingCard"
 				onClick={() => {
 					this.props.setMapView(sighting);
 				}}
 			>
-				<p>
-					{sighting.City || sighting.city || (
-						<small>{sighting.full_address.split(",")[0]}</small>
-					)}
-				</p>
-				<h5>{sighting.province || sighting.Province}</h5>
-				<small id="date">{sighting.datetime}</small>
+				<div className="identifier">{this.props.identifier}</div>
+				<div className="location">
+					<p>
+						{sighting.City || sighting.city || (
+							<small>{sighting.full_address.split(",")[0]}</small>
+						)}
+					</p>
+
+					<h5>{sighting.province || sighting.Province}</h5>
+				</div>
+				<small className="date">{sighting.datetime}</small>
 			</button>
 		);
 	}
