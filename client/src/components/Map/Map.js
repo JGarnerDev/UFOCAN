@@ -11,6 +11,7 @@ export default function Map(props) {
 			mapboxApiAccessToken={TOKEN}
 			mapStyle="mapbox://styles/eljeffe345/ckcl2is4b099l1iqe5mrj65u7"
 			{...props.viewport}
+			onViewportChange={(viewport) => props.setMapView(viewport)}
 		>
 			{props.sightings.map((sighting, i) => (
 				<Marker
