@@ -7,6 +7,9 @@ import { CSI_zoom } from "../store/actions";
 import Map from "../components/Map/Map";
 
 class MapContainer extends Component {
+	state = {
+		showMeme: false,
+	};
 	componentDidMount() {
 		this.props.setMapView(this.props.showing);
 	}
@@ -17,21 +20,37 @@ class MapContainer extends Component {
 		return (
 			<div id="Sighting">
 				<Map {...this.props} />
+
 				<div id="zoom-toggle">
-					<button
-						onClick={() => {
-							this.props.CSI_zoom(0.5);
-						}}
-					>
-						+
-					</button>
-					<button
-						onClick={() => {
-							this.props.CSI_zoom(-0.5);
-						}}
-					>
-						-
-					</button>
+					{this.state.showMeme ? <div id="meme-img" /> : null}
+
+					<div id="zoom-buttons">
+						<button
+							onClick={() => {
+								this.props.CSI_zoom(0.5);
+								window.setTimeout(() => {
+									this.setState({
+										showMeme: false,
+									});
+								}, 800);
+								this.setState({
+									showMeme: true,
+								});
+							}}
+						>
+							+
+						</button>
+						<button
+							onClick={() => {
+								this.props.CSI_zoom(-0.5);
+								this.setState({
+									showMeme: false,
+								});
+							}}
+						>
+							-
+						</button>
+					</div>
 				</div>
 			</div>
 		);

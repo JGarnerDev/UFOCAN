@@ -33,7 +33,7 @@ class ListSettingsContainer extends Component {
 
 	settings = ["Sort by new"];
 
-	amounts = [10, 20, 50, 100];
+	amounts = [10, 20, 50, 100, 200];
 
 	renderRegionsMenu(regions) {
 		return regions.map((region, i) => {

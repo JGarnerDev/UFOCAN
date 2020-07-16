@@ -13,6 +13,7 @@ import Nav from "./components/Nav";
 ReactDOM.render(
 	<Provider store={store}>
 		<Router>
+			<div id="anchor" />
 			<Nav />
 			<Routes />
 		</Router>

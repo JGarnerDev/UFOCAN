@@ -9,6 +9,8 @@
     margin: 0;
     padding: 0;
     //
+    z-index: 2;
+    //
     border-radius: 10px;
     #sightings-container {
         height: 100%;
@@ -19,6 +21,9 @@
         //
         overflow-y: scroll;
         scroll-behavior: smooth;
+        //
+        z-index: 2;
+        //
         @media (max-width: 600px) {
             overflow-y: visible;
         }

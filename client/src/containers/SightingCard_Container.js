@@ -9,24 +9,26 @@ class SightingCardContainer extends Component {
 		let sighting = this.props.sighting;
 
 		return (
-			<button
-				className="SightingCard"
-				onClick={() => {
-					this.props.setMapView(sighting);
-				}}
-			>
-				<div className="identifier">{this.props.identifier}</div>
-				<div className="location">
-					<p>
-						{sighting.City || sighting.city || (
-							<small>{sighting.full_address.split(",")[0]}</small>
-						)}
-					</p>
+			<a href="#anchor" className="card-wrapper">
+				<button
+					className="SightingCard"
+					onClick={() => {
+						this.props.setMapView(sighting);
+					}}
+				>
+					<div className="identifier">{this.props.identifier}</div>
+					<div className="location">
+						<p>
+							{sighting.City || sighting.city || (
+								<small>{sighting.full_address.split(",")[0]}</small>
+							)}
+						</p>
 
-					<h5>{sighting.province || sighting.Province}</h5>
-				</div>
-				<small className="date">{sighting.datetime}</small>
-			</button>
+						<h5>{sighting.province || sighting.Province}</h5>
+					</div>
+					<small className="date">{sighting.datetime}</small>
+				</button>
+			</a>
 		);
 	}
 }
