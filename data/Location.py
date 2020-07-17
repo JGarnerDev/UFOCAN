@@ -2,6 +2,7 @@
 import ast
 import requests
 from ratelimiter import RateLimiter
+from functools import wraps
 
 
 class Location:
@@ -22,7 +23,7 @@ class Location:
         """City appears as city, village, town, or Null.
         This will return in order:
         city, town, village, road+county"""
-        cities_search = ['city', 'village', 'town',]
+        cities_search = ['city','village','town',]
         road_county = ['road', 'county']
         city_info = []
 
@@ -37,7 +38,6 @@ class Location:
                 if self.location_data.get('address').get(i) is not None:
                     city_info.append(self.location_data.get('address').get(i))
             return ','.join(city_info)
-
 
     def province(self):
         return self.location_data.get('address').get('state')
@@ -72,24 +72,29 @@ class LocationTools(Location):
         self.location_data.update(raw_location_content)
 
 
-def main():
-    def import_token(func):
-        """Open file decorator."""
+def import_token(func):
+    """Open file using decorator."""
+    @wraps(func)
+    def wrapper(*args, **kwargs):
         with open('token.txt') as token_file:
             private_token = token_file.read()
-        func(private_token)
+        run = func(private_token, *args, **kwargs)
+        return run
 
-    @import_token
-    def return_location_info(private_token):
-        """Take lat,lon and return address."""
-        lat, lon = input('lat,lon: ').split(',')
+    return wrapper
 
-        rev_geo_location = LocationTools()
-        rev_geo_location.make_request(lat, lon, private_token)
-        address = rev_geo_location.address()
 
-        print(f'The Address is: {address}')
+@import_token
+def return_location_info(private_token):
+    """Take lat,lon and return address."""
+    lat, lon = input('lat,lon: ').split(',')
+
+    rev_geo_location = LocationTools()
+    rev_geo_location.make_request(lat, lon, private_token)
+    address = rev_geo_location.address()
+
+    print(f'The Address is: {address}')
 
 
 if __name__ == '__main__':
-    main()
+    return_location_info()
