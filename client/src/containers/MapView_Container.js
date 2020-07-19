@@ -14,7 +14,8 @@ class MapContainer extends Component {
 		this.props.setMapView(this.props.showing);
 	}
 
-	TOKEN = process.env.REACT_APP_MAPBOXGL_TOKEN;
+	TOKEN =
+		"pk.eyJ1IjoiZWxqZWZmZTM0NSIsImEiOiJja2Nrd2lkNzkwZjJtMnp0OGQ5ZWtmNGg1In0.WtyMk-JjexhuWsoXRKEQrA";
 
 	render() {
 		return (
