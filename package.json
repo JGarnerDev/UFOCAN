@@ -25,9 +25,7 @@
     },
     "homepage": "https://github.com/JGarnerDev/UFOCAN#readme",
     "dependencies": {
-        "concurrently": "^5.2.0",
-        "express-mysql-session": "^2.1.4",
-        "express-session": "^1.17.1"
+        "concurrently": "^5.2.0"
     },
     "devDependencies": {
         "body-parser": "^1.19.0",

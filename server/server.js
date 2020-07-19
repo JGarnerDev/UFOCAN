@@ -1,5 +1,5 @@
 // Environment variable
-require("dotenv").config();
+if (process.env.NODE_ENV !== "production") require("dotenv").config();
 // Modules
 const express = require("express");
 const app = express();
@@ -10,6 +10,8 @@ const path = require("path");
 
 app.use(bodyParser.json());
 app.use(cookieParser());
+
+app.use(express.static("client/build"));
 
 app.use((req, res, next) => {
 	res.header("Access-Control-Allow-Origin", "*");
@@ -61,8 +63,6 @@ app.post("/sightings", (req, res) => {
 });
 
 if (process.env.NODE_ENV === "production") {
-	app.use(express.static("client/build"));
-
 	app.get("*", (req, res) => {
 		res.sendfile(path.resolve(__dirname, "client", "build", "index.html"));
 	});
