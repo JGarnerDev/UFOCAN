@@ -1,7 +1,10 @@
+node_modules
 server/node_modules
 client/node_modules
 server/.env
+client/.env.local
 token.txt
 data/Mysql_creds.json
 data/__pycache__/
 data/.DS_Store
+notes.js

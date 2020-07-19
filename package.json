@@ -2,11 +2,14 @@
     "name": "ufocan",
     "version": "1.0.0",
     "description": "",
-    "main": "index.js",
+    "main": "server/server.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "start": "node server/server.js",
-        "server": "nodemon server/server.js"
+        "server": "nodemon server/server.js",
+        "client": "npm run start --prefix client",
+        "dev": "concurrently \"npm run server\" \"npm run client\"",
+        "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
     },
     "repository": {
         "type": "git",
@@ -22,6 +25,7 @@
     },
     "homepage": "https://github.com/JGarnerDev/UFOCAN#readme",
     "dependencies": {
+        "concurrently": "^5.2.0",
         "express-mysql-session": "^2.1.4",
         "express-session": "^1.17.1"
     },
