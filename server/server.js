@@ -1,14 +1,17 @@
 // Environment variable
-require("dotenv").config();
+if (process.env.NODE_ENV !== "production") require("dotenv").config();
 // Modules
 const express = require("express");
 const app = express();
 const mysql = require("mysql");
 const bodyParser = require("body-parser");
-const cookieParser = require("cookie-parser");
+
+const path = require("path");
 
 app.use(bodyParser.json());
-app.use(cookieParser());
+
+app.use(express.static("client/build"));
+
 app.use((req, res, next) => {
 	res.header("Access-Control-Allow-Origin", "*");
 	next();
@@ -57,6 +60,12 @@ app.post("/sightings", (req, res) => {
 		res.send(results);
 	});
 });
+
+if (process.env.NODE_ENV === "production") {
+	app.get("*", (req, res) => {
+		res.sendfile(path.resolve(__dirname, "../client", "build", "index.html"));
+	});
+}
 
 const port = process.env.PORT || 5000;
 
