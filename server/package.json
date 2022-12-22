@@ -15,7 +15,7 @@
         "cors": "^2.8.5",
         "express-mysql-session": "^2.1.4",
         "express-session": "^1.17.1",
-        "jsonwebtoken": "^8.5.1",
+        "jsonwebtoken": "^9.0.0",
         "moment-js": "^1.1.15",
         "mongoose": "^5.9.22",
         "pg": "^8.2.1",
